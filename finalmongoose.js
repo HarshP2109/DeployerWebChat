@@ -11,7 +11,7 @@ var idee = [];        //Ids Active
 
 
 app.set('view engine', 'ejs');
-
+require('dotenv').config()
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -191,8 +191,8 @@ app.post('/',(req,res) => {
 
 //Build connection
 const mongoose = require('mongoose');
-const WebChat = mongoose.createConnection('mongodb+srv://Harsh21:HP212003@harshh.tiwptm5.mongodb.net/WebChat');
-const Chatting = mongoose.createConnection('mongodb+srv://Harsh21:HP212003@harshh.tiwptm5.mongodb.net/Chatting');
+const WebChat = mongoose.createConnection(process.env.MongoURL1);
+const Chatting = mongoose.createConnection(process.env.MongoURL2);
 
 
 
@@ -418,6 +418,6 @@ function check_same(id1,ide2){
 
 
 server.listen(process.env.Port,()=>{
-    console.log("Server at port ",ServerKey," !!!");
+    console.log("Server at port ",process.env.Port," !!!");
   }); 
   
