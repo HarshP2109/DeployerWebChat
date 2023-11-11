@@ -5,7 +5,7 @@ const chatbody = document.getElementById("chattt");
 const friendInput = document.getElementById('friend-id');
 var ide = localStorage.getItem('UniqueID');
 var user = localStorage.getItem('username');
-
+var imagechanger = document.getElementById('newImageChange');
 
 
 socket.emit('Online I', user, ide);
@@ -33,6 +33,9 @@ friendInput.addEventListener('keydown', (event) => {
             var position = element.querySelector('div > p').innerHTML;
             document.querySelector('.prof-acc').querySelector('div > p').innerHTML = position;
             position = position.replace("ID : ", "");
+            var userImage = element.querySelector('img'); 
+            imagechanger.src = userImage.src;
+
             socket.emit('get chat', ide, position);
         });
     });
