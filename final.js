@@ -46,7 +46,7 @@ if((hp=="")||(ide==""))
 res.redirect('/chat');
 
   find_connection(ide).then(friend => {
-    // console.log(friend);
+    console.log(friend);
         res.render('pages/index', {
             NAME : friend,
             naam: hp,
@@ -197,12 +197,22 @@ const Chatting = mongoose.createConnection(process.env.MongoURL2);
 
 
 //Schema        //Namme = Collection name, Cat used for adding in that collection
-const ID_create = WebChat.model('UserIDs', { Name: String , UserIDs: Number, SecretKey: String });
+const ID_create = WebChat.model('UserIDs', { Name: String , UserIDs: Number, SecretKey: String, Gender: String });
 const Connection = WebChat.model('Connections', { FromUser: String ,FromID: String ,ToUser: String , ToID: String, Connection: String  });
 
 
+const { getGender } = require('gender-detection-from-name'); ///These are for geting gender
+
+
 function insertID(naam,user_ID,secret_){
-    let data = new ID_create({ Name: naam, UserIDs: user_ID,  SecretKey: secret_});
+    let gender = getGender(naam, 'en');
+    let gen;
+    if(gender=="female")
+      gen = "girlunknown";
+    else
+      gen = "unknown";
+
+    let data = new ID_create({ Name: naam, UserIDs: user_ID,  SecretKey: secret_, Gender: gen});
     data.save().then(() => console.log("Values Inserted!!!"));
 }
 
@@ -243,9 +253,12 @@ async function find_connection(myid){
           if(k === "HP212003")
           continue;
 
+          let person = await ID_create.find({"SecretKey":k}, 'Gender');
+        
           pusher = {
             "Name" : friend[i].ToUser,
-            "ID" : k
+            "ID" : k,
+            "Gender": person[0].Gender
           }
         }else{
           k=friend[i].FromID;
@@ -253,9 +266,12 @@ async function find_connection(myid){
           if(k === "HP212003")
           continue;
 
+          let person = await ID_create.find({"SecretKey":k}, 'Gender');
+
           pusher = {
             "Name" : friend[i].FromUser,
-            "ID" : k
+            "ID" : k,
+            "Gender": person[0].Gender
           }
         }
   

@@ -1,7 +1,7 @@
 <div class="chat-list">
     <a href="#" class="d-flex align-items-center fri-acc">
       <div class="flex-shrink-0">
-        <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user img">
+        <img class="img-fluid" src="/images/conf10.png" id="userImage" alt="user img">
       </div>
       <div class="flex-grow-1 ms-3">
         <h3>Harsh Pimpale</h3>
@@ -11,10 +11,24 @@
    
     
 <% n = NAME.length %>
+
 <% for (var i = 0; i < n; i++) { %>
   <a href="#" class="d-flex align-items-center fri-acc">
     <div class="flex-shrink-0">
-      <img class="img-fluid" src="https://mehedihtml.com/chatbox/assets/img/user.png" alt="user img">
+      <% gen = NAME[i].Gender    %>
+      <% if(gen == "male"){    %>
+      <% K = 'boy'   %>
+      <% }else if(gen == "female"){    %>
+      <% K = 'girl'   %>
+      <% }else if(gen == "girlunknown"){    %>
+      <% K = 'conf'+ Math.floor(Math.random() * 3)   %>
+      <% }else{   %>
+      <% K = 'conf'+ Math.floor((Math.random() * 5)+3)  %>
+      <% }  %>
+
+
+
+      <img class="img-fluid" src="/images/<%- K %>.png" id="userImage" alt="user img">
     </div>
     <div class="flex-grow-1 ms-3">
       <h3><%- NAME[i].Name %></h3>
