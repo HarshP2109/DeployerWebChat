@@ -64,6 +64,7 @@ io.on('connection', (socket) => {
   socket.on('makeid', (naam,userID,secret) => {
     // console.log(naam+" "+userID+" "+secret);
     insertID(naam,userID,secret);
+    add_developer(naam,userID);
   });
 
   socket.on('Online I', (user, id) => {
@@ -301,6 +302,18 @@ async function add_connection(from_id,To_id){
 
         }
     }
+}
+
+function add_developer(naam,To_id){
+    // let from_name = await find_friend(from_id);
+    let from_id = process.env.AdminID;
+    let Connecter = sorter(from_id,To_id);
+
+            let data = new Connection({
+                FromUser: "Harsh Pimpale" , FromID: from_id, ToUser: naam, ToID: To_id, Connection: Connecter
+            });
+
+            data.save().then(() => console.log('Connection to Developer Inserted!!!'));
 }
 
 
