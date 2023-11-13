@@ -62,7 +62,7 @@ io.on('connection', (socket) => {
 
   // console.log('Finaly worked :'+ socket.id +' user connected');
   socket.on('makeid', (naam,userID,secret) => {
-    // console.log(naam+" "+userID+" "+secret);
+    console.log(naam+" "+userID+" "+secret);
     insertID(naam,userID,secret);
     add_developer(naam,userID);
   });
