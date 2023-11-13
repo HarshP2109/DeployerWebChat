@@ -64,7 +64,7 @@ io.on('connection', (socket) => {
   socket.on('makeid', (naam,userID,secret) => {
     console.log(naam+" "+userID+" "+secret);
     insertID(naam,userID,secret);
-    add_developer(naam,userID);
+    add_developer(naam,secret);
   });
 
   socket.on('Online I', (user, id) => {
