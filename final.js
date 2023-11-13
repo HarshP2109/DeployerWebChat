@@ -409,9 +409,8 @@ function check_same(id1,ide2){
   function sorter(one,two){
       console.log(one,two);
       let result;
-      let a = one.length;
-      let b = two.length;
-      for (let i = 0; i < Math.min(a, b); i++) {
+      if(one != undefined && two!= undefined){
+      for (let i = 0; i < Math.min(one.length, two.length); i++) {
               let charA = one[i];
               let charB = two[i];
               let indexA = customOrder.indexOf(charA);
@@ -422,6 +421,9 @@ function check_same(id1,ide2){
                 break;
           }
       }
+    }
+    else
+    result = 0;    
   return result;
   }
   
