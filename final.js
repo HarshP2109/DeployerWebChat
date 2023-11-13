@@ -407,6 +407,7 @@ function check_same(id1,ide2){
   const customOrder = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   
   function sorter(one,two){
+      console.log(one,two);
       let result;
       let a = one.length;
       let b = two.length;
