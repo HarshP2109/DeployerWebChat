@@ -1,1 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Tektur&display=swap");body{font-family:"Tektur",cursive !important;}body{padding-left:1rem !important;}body{padding-bottom:3rem !important;}body{padding-right:1rem !important;}body{padding-top:3rem !important;}input::placeholder{font-size:11.25pt !important;}input::placeholder{color:#d3d3d3 !important;}
+
+@import url("https://fonts.googleapis.com/css2?family=Tektur&display=swap");
+
+body {
+  font-family: "Tektur", cursive !important;
+  padding: 3rem 1rem !important;
+}
+
+input::placeholder {
+  font-size: 15px !important;
+  color: #d3d3d3 !important;
+}

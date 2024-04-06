@@ -1,1 +1,34 @@
-var _0x5362f4=_0x5132;(function(_0x52ddeb,_0x3068c2){var _0x28ed09=_0x5132,_0x1f4175=_0x52ddeb();while(!![]){try{var _0x58491d=parseInt(_0x28ed09(0x7c))/0x1+-parseInt(_0x28ed09(0x8b))/0x2*(parseInt(_0x28ed09(0x8d))/0x3)+parseInt(_0x28ed09(0x88))/0x4*(parseInt(_0x28ed09(0x8a))/0x5)+parseInt(_0x28ed09(0x8f))/0x6+parseInt(_0x28ed09(0x8e))/0x7*(parseInt(_0x28ed09(0x87))/0x8)+-parseInt(_0x28ed09(0x85))/0x9+-parseInt(_0x28ed09(0x91))/0xa;if(_0x58491d===_0x3068c2)break;else _0x1f4175['push'](_0x1f4175['shift']());}catch(_0x374862){_0x1f4175['push'](_0x1f4175['shift']());}}}(_0x2cc8,0x5ca65));const socket=io();function _0x2cc8(){var _0x110bbc=['3580615gjzzCx','178JbaXXb','setItem','5970JYKqyS','70nYGtTG','638022AHpiVR','<%=\x20Unique\x20%>','3564730GWhTXp','emit','getElementById','getItem','value','59588RqHahq','username','submit','log','UniqueID','name','localStorage','secret','onload','2793528NxQmcZ','formms','273136mULXMK','4GHgoNF','Script\x20is\x20running'];_0x2cc8=function(){return _0x110bbc;};return _0x2cc8();}function _0x5132(_0x5df6c2,_0x346d30){var _0x2cc811=_0x2cc8();return _0x5132=function(_0x51324e,_0x394d44){_0x51324e=_0x51324e-0x7b;var _0x24338a=_0x2cc811[_0x51324e];return _0x24338a;},_0x5132(_0x5df6c2,_0x346d30);}console[_0x5362f4(0x7f)](_0x5362f4(0x89)),window[_0x5362f4(0x84)]=function(){var _0xaaf7db=_0x5362f4,_0x2ce514=window[_0xaaf7db(0x82)][_0xaaf7db(0x94)](_0xaaf7db(0x7d)),_0xbddeb7=window[_0xaaf7db(0x82)][_0xaaf7db(0x94)](_0xaaf7db(0x80)),_0x1632a6=window[_0xaaf7db(0x82)]['getItem'](_0xaaf7db(0x83));_0x2ce514&&(window['location']['href']='/chat/'+_0xbddeb7+'/'+_0x2ce514),localStorage&&document[_0xaaf7db(0x93)](_0xaaf7db(0x86))['addEventListener'](_0xaaf7db(0x7e),function(){var _0xb80942=_0xaaf7db,_0x273fcd=document[_0xb80942(0x93)](_0xb80942(0x81))[_0xb80942(0x7b)]['trim'](),_0x48ff45=_0xb80942(0x90),_0x4f5db1=Math['floor'](Math['random']()*0xf4240);localStorage[_0xb80942(0x8c)]('username',_0x273fcd),localStorage[_0xb80942(0x8c)]('secret',_0x4f5db1),localStorage['setItem']('UniqueID',_0x48ff45),socket[_0xb80942(0x92)]('makeid',_0x273fcd,_0x4f5db1,_0x48ff45);});};
+
+const socket = io();
+console.log("Script is running");
+window.onload = function() {
+    let username = window.localStorage.getItem('username');
+    let userid = window.localStorage.getItem('UniqueID');
+    let secret = window.localStorage.getItem('secret');
+    if (username)  {
+      // console.log(username);
+    //     // var redirect = '/chat/'+UniqueID+'/'+username;
+        window.location.href = "/chat/"+userid+"/"+username; // Redirect to enter.html if local storage has username
+        // window.location.href = '/redirecter'; // Redirect to enter.html if local storage has username
+    }
+    
+    if (localStorage) {
+
+// Add an event listener for form submissions
+  document.getElementById('formms').addEventListener('submit', function() {
+// Get the value of the name field.
+  let name = document.getElementById('name').value.trim();
+// Save the name in localStorage.
+    // console.log(name);
+    let Uniquer = '<%= Unique %>';
+    let secretkey = Math.floor(Math.random() * 1000000);
+
+  localStorage.setItem('username', name);
+  localStorage.setItem('secret', secretkey);
+  localStorage.setItem('UniqueID', Uniquer);
+    socket.emit('makeid',name,secretkey,Uniquer);
+});
+
+
+} 
+}
